@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="NEVERMIND — Marketing con dirección. Estrategia, creatividad y ejecución para marcas que quieren avanzar.">
+<meta name="theme-color" content="#111111">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<title>NEVERMIND — Marketing con dirección</title>
+<style>
+/* =========================================================
+   NEVERMIND — sitio one-page
+   HTML + CSS + JavaScript en un único archivo.
+   Contenidos integrados desde el documento entregado por cliente.
+   ========================================================= */
+:root{
+  --bg:#111111;
+  --ink:#f5f3ef;
+  --muted:#aaa6a1;
+  --accent:#00fdfe;
+  --cyan:#00fdfe;
+  --magenta:#ff2bd6;
+  --purple:#8b5cf6;
+  --electric-blue:#397bff;
+  --acid:#e7ff35;
+  --lime:#e7ff35;
+  --blue:#ff2bd6;
+  --paper:#17131d;
+  --panel:#202020;
+  --gutter:clamp(22px,5vw,78px);
+  --header-h:78px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + 20px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Manrope",Arial,Helvetica,sans-serif;overflow-x:hidden}
+body.menu-open{overflow:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:var(--accent);color:#111}
+.site-header{
+  position:fixed;z-index:100;inset:0 0 auto;height:var(--header-h);
+  padding:0 var(--gutter);display:flex;align-items:center;justify-content:space-between;
+  background:rgba(17,17,17,.28);backdrop-filter:blur(9px);
+  border-bottom:1px solid rgba(255,255,255,.025);transition:height .35s,background .35s
+}
+.site-header.is-scrolled{height:68px;background:rgba(17,17,17,.84)}
+.brand{display:flex;align-items:center;width:clamp(220px,22vw,310px);max-width:55vw;height:58px;transition:width .35s,height .35s}
+.brand img{display:block;width:100%;height:100%;object-fit:contain;object-position:left center}
+.site-header.is-scrolled .brand{width:clamp(205px,19vw,270px);height:52px}
+.header-actions{display:flex;align-items:center;gap:24px}
+.header-caption{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.menu-toggle{
+  display:flex;align-items:center;gap:25px;padding:12px 17px;border:1px solid #777;
+  border-radius:50px;background:transparent;color:var(--ink);cursor:pointer;transition:.3s
+}
+.menu-toggle:hover{background:var(--magenta);border-color:var(--magenta);color:#111;box-shadow:0 0 24px #ff2bd655}
+.menu-icon{font-size:20px;line-height:12px}
+.menu-overlay{
+  position:fixed;z-index:90;inset:0;background:var(--magenta);color:#111;
+  padding:calc(var(--header-h) + 55px) var(--gutter) 55px;
+  display:flex;flex-direction:column;justify-content:center;gap:5px;
+  transform:translateY(-105%);visibility:hidden;transition:transform .8s var(--ease),visibility .8s
+}
+.menu-overlay.open{transform:translateY(0);visibility:visible}
+.menu-overlay a{width:max-content;max-width:100%;font-size:clamp(45px,9vw,115px);font-weight:800;line-height:.98;letter-spacing:-.075em;transition:transform .35s var(--ease)}
+.menu-overlay a:hover{transform:translateX(15px)}
+.menu-foot{margin-top:30px;font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+main{padding-top:var(--header-h)}
+section{position:relative}
+.eyebrow{margin:0 0 22px;font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:var(--muted)}
+.hero{
+  min-height:calc(100svh - var(--header-h));padding:clamp(80px,12vh,145px) var(--gutter) 55px;
+  display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;isolation:isolate
+}
+.hero{background:#111}
+.hero-video{position:absolute;z-index:-3;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
+.hero-video-shade{position:absolute;z-index:-2;inset:0;background:linear-gradient(90deg,rgba(8,8,8,.76) 0%,rgba(8,8,8,.53) 55%,rgba(8,8,8,.42) 100%);pointer-events:none}
+.hero-glow{
+  position:absolute;z-index:-1;width:min(60vw,790px);aspect-ratio:1;right:-12vw;top:10%;
+  border-radius:50%;background:radial-gradient(circle at 35% 32%,#b8ffff 0,#00fdfe 23%,#007b80 48%,transparent 71%);
+  opacity:.28;filter:blur(5px);animation:glowDrift 11s ease-in-out infinite alternate
+}
+.hero-glow:after{content:"";position:absolute;inset:19%;border:1px solid #ffffff55;border-radius:50%;transform:scaleX(1.5) rotate(30deg)}
+@keyframes glowDrift{to{transform:translate(-5vw,4vh) scale(1.08)}}
+.hero h1{margin:0;font-size:clamp(68px,13vw,180px);line-height:.78;letter-spacing:-.095em;font-weight:750;max-width:1200px}
+.hero h1 .wordmark{color:var(--accent)}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-top:65px}
+.hero-copy{max-width:560px;margin:0;font-size:clamp(18px,2.2vw,29px);line-height:1.18;letter-spacing:-.045em}
+.hero-copy strong{font-weight:700}
+.hero-cta{
+  display:inline-flex;align-items:center;gap:42px;border:1px solid #aaa;border-radius:100px;
+  padding:17px 21px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;transition:.4s var(--ease)
+}
+.hero-cta:hover{background:var(--magenta);border-color:var(--magenta);color:#111;transform:translateY(-4px);box-shadow:0 0 28px #ff2bd655}
+.scroll-note{margin-top:38px;color:var(--muted);font-size:10px;letter-spacing:.16em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
+.scroll-note:before{content:"";width:38px;height:1px;background:var(--accent)}
+.section-intro{
+  min-height:80vh;padding:var(--section-gap,clamp(90px,12vw,170px)) var(--gutter);
+  background:radial-gradient(ellipse at 82% 18%,#8b5cf622 0,transparent 42%),#17131d;color:#f5f3ef;display:flex;flex-direction:column;justify-content:center
+}
+.section-intro .eyebrow{color:var(--magenta)}
+.intro-title{max-width:1200px;margin:0;font-size:clamp(52px,10vw,145px);line-height:.88;letter-spacing:-.085em;font-weight:650}
+.intro-title .highlight{color:var(--magenta)}
+.intro-lower{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:end;margin-top:55px}
+.intro-copy{max-width:560px;margin:0;font-size:clamp(19px,2.2vw,29px);line-height:1.2;letter-spacing:-.04em}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.pillar{min-height:170px;padding:18px;background:linear-gradient(135deg,#ff2bd6,#8b5cf6);color:#fff;display:flex;flex-direction:column;justify-content:space-between}
+.pillar:nth-child(2){background:linear-gradient(135deg,#00fdfe,#397bff);color:#111}
+.pillar:nth-child(3){background:linear-gradient(135deg,#e7ff35,#ff2bd6);color:#111}
+.pillar small{font-size:9px;letter-spacing:.14em;text-transform:uppercase}
+.pillar strong{font-size:clamp(20px,2.4vw,34px);line-height:.95;letter-spacing:-.06em}
+.method{padding:clamp(90px,12vw,165px) var(--gutter);background:#171717}
+.method-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-bottom:65px}
+.method-heading h2{max-width:900px;margin:0;font-size:clamp(54px,10vw,140px);line-height:.84;letter-spacing:-.09em;font-weight:650}
+.method-heading .eyebrow{margin-bottom:18px}
+.method-aside{max-width:230px;color:var(--muted);font-size:13px;line-height:1.5}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.method-card{
+  min-height:390px;padding:clamp(20px,3vw,38px);display:flex;flex-direction:column;
+  justify-content:space-between;overflow:hidden;position:relative;isolation:isolate;color:#111
+}
+.method-card:nth-child(1){background:linear-gradient(135deg,#ff2bd6 0%,#8b5cf6 100%);color:#fff}
+.method-card:nth-child(2){background:linear-gradient(135deg,#00fdfe 0%,#397bff 100%)}
+.method-card:nth-child(3){background:linear-gradient(135deg,#e7ff35 0%,#ff2bd6 100%)}
+.method-number{font-size:11px;letter-spacing:.12em}
+.method-symbol{position:absolute;z-index:-1;right:-12px;top:30px;font-size:clamp(110px,18vw,245px);font-weight:800;line-height:1;letter-spacing:-.1em;opacity:.14;transition:transform .7s var(--ease)}
+.method-card:hover .method-symbol{transform:rotate(-12deg) scale(1.12)}
+.method-card h3{margin:0 0 16px;font-size:clamp(30px,4.3vw,60px);line-height:.9;letter-spacing:-.07em}
+.method-card p{margin:0;max-width:340px;font-size:clamp(16px,1.6vw,21px);line-height:1.35}
+.method-note{margin:42px 0 0;max-width:780px;font-size:clamp(22px,3vw,38px);line-height:1.12;letter-spacing:-.045em}
+.method-note span{color:var(--accent)}
+.closing{
+  min-height:72vh;padding:clamp(90px,12vw,165px) var(--gutter);
+  background:linear-gradient(115deg,#ff2bd6 0%,#8b5cf6 52%,#00fdfe 100%);color:#111;display:flex;flex-direction:column;justify-content:space-between
+}
+.closing h2{max-width:1050px;margin:0;font-size:clamp(58px,11vw,155px);line-height:.83;letter-spacing:-.09em;font-weight:700}
+.closing-bottom{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;margin-top:65px}
+.closing-bottom p{max-width:470px;margin:0;font-size:clamp(18px,2vw,26px);line-height:1.2;letter-spacing:-.035em}
+.closing-link{border:1px solid #111;border-radius:100px;padding:17px 23px;display:inline-flex;gap:45px;font-size:11px;text-transform:uppercase;letter-spacing:.12em;transition:.35s}
+.closing-link:hover{background:#111;color:white}
+footer{padding:55px var(--gutter) 25px;background:#111}
+.footer-top{display:flex;justify-content:space-between;gap:30px;align-items:flex-start;padding-bottom:75px}
+.footer-brand{display:block;width:min(30vw,470px);min-width:220px;height:auto}
+.footer-brand img{display:block;width:100%;height:auto;max-height:82px;object-fit:contain;object-position:left center}
+.footer-tagline{margin:15px 0 0;color:var(--muted);font-size:clamp(16px,2vw,24px)}
+.footer-social{display:flex;gap:28px;flex-wrap:wrap;padding-top:12px}
+.footer-social a{font-size:12px;color:#c7c3be;transition:color .25s}
+.footer-social a:hover{color:var(--magenta)}
+.footer-bottom{border-top:1px solid #393939;padding-top:18px;display:flex;justify-content:space-between;gap:20px;color:#777;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+.delay-1{transition-delay:.12s}.delay-2{transition-delay:.24s}.delay-3{transition-delay:.36s}
+@media(max-width:760px){
+  .header-caption{display:none}
+  .brand{width:clamp(190px,52vw,250px);height:52px}
+  .site-header.is-scrolled .brand{width:clamp(180px,48vw,225px);height:48px}
+  .hero h1{font-size:clamp(62px,16vw,115px)}
+  .hero-glow{width:90vw;right:-30vw;top:25%}.hero-video-shade{background:rgba(8,8,8,.58)}
+  .hero-bottom,.closing-bottom{align-items:flex-start;flex-direction:column}
+  .intro-lower{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .pillar{min-height:125px}
+  .method-heading{display:block}
+  .method-aside{margin-top:25px}
+  .method-grid{grid-template-columns:1fr}
+  .method-card{min-height:300px}
+  .footer-top{flex-direction:column;padding-bottom:50px}
+  .footer-brand{width:min(68vw,340px);min-width:190px}
+  .footer-brand img{max-height:64px}
+  .footer-bottom{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{scroll-behavior:auto!important;animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+}
+
+/* Tipografía: Outfit en titulares; tracking editorial uniforme de -0.09em */
+.menu-overlay a,.hero h1,.intro-title,.method-heading h2,.method-card h3,.closing h2,.work-heading h2,.art-title{font-family:"Outfit","Manrope",sans-serif}
+/* Ajuste solicitado de tracking para titulares */
+.menu-overlay a,.hero h1,.intro-title,.method-heading h2,.method-card h3,.closing h2,.work-heading h2,.art-title,.clients-head h2{font-family:"Outfit","Manrope",sans-serif;font-weight:800;letter-spacing:-.055em}
+/* CLIENTES: marquesina continua con velocidad influida por el scroll */
+.clients-section{padding:clamp(85px,11vw,150px) 0;background:radial-gradient(ellipse at 15% 50%,#ff2bd615 0,transparent 45%),#17131d;color:#f5f3ef;overflow:hidden}
+.clients-head{padding:0 var(--gutter);display:flex;justify-content:space-between;align-items:flex-end;gap:28px;margin-bottom:54px}
+.clients-head h2{margin:0;max-width:900px;font-size:clamp(48px,8vw,112px);line-height:.86;letter-spacing:-.085em;font-weight:650}
+.clients-head .eyebrow{color:var(--magenta)}
+.clients-note{max-width:235px;color:#aaa;font-size:13px;line-height:1.45}
+.client-marquee{overflow:hidden;border-top:1px solid #ffffff2b;border-bottom:1px solid #ffffff2b;padding:22px 0}
+.client-marquee+.client-marquee{border-top:0}
+.client-track{display:flex;align-items:center;gap:clamp(32px,6vw,95px);width:max-content;will-change:transform;animation:clientRun 34s linear infinite}
+.client-marquee.reverse .client-track{animation-direction:reverse;animation-duration:42s}
+.client-marquee:hover .client-track{animation-play-state:paused}
+.client-wordmark{display:flex;align-items:center;justify-content:center;min-width:clamp(130px,17vw,235px);height:72px;font-size:clamp(21px,3vw,38px);font-weight:800;letter-spacing:-.07em;white-space:nowrap;opacity:.78;filter:grayscale(1) brightness(1.8);transition:opacity .3s,transform .3s,filter .3s}
+.client-wordmark:nth-child(3n){font-family:Georgia,serif;font-style:italic;font-weight:500;letter-spacing:-.08em}
+.client-wordmark:nth-child(4n){font-size:clamp(17px,2.4vw,29px);letter-spacing:.04em;text-transform:uppercase}
+.client-wordmark:hover{opacity:1;filter:none;transform:scale(1.07)}
+@keyframes clientRun{to{transform:translateX(-50%)}}
+/* OUR WORK: pin vertical real + traslación estrictamente horizontal (eje X) */
+.pin-spacer-workHorizontalSequence{position:relative;width:100%;height:100svh}
+.work-section{position:sticky;top:0;height:100svh;min-height:560px;background:#111;color:#f5f3ef;overflow:hidden}
+.work-sticky{position:relative;top:auto;height:100%;min-height:0;display:flex;flex-direction:column;justify-content:space-between;padding:clamp(28px,4vw,58px) 0 28px;overflow:hidden}
+.work-heading{padding:0 var(--gutter);display:flex;align-items:flex-end;justify-content:space-between;gap:30px}
+.work-heading h2{margin:0;font-size:clamp(55px,9vw,125px);line-height:.82;letter-spacing:-.09em;font-weight:650}
+.work-heading .eyebrow{color:var(--accent)}
+.work-instruction{max-width:205px;color:#aaa;font-size:12px;line-height:1.5}
+.work-heading-side{display:flex;align-items:flex-end;gap:22px}
+.work-controls{display:flex;gap:8px;flex:0 0 auto}
+.work-nav{width:44px;height:44px;border:1px solid #777;border-radius:50%;background:transparent;color:#f5f3ef;font-size:20px;cursor:pointer;transition:background .25s,color .25s,border-color .25s,transform .25s}
+.work-nav:hover{background:var(--magenta);border-color:var(--magenta);color:#111;transform:scale(1.06);box-shadow:0 0 20px #ff2bd655}
+.work-nav:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+.work-viewport{width:100%;overflow:hidden;padding-left:var(--gutter);padding-right:var(--gutter);cursor:grab;touch-action:pan-y}
+.work-viewport.is-dragging{cursor:grabbing;user-select:none}
+.work-track{display:flex;gap:clamp(14px,2vw,28px);width:max-content;will-change:transform;transform:translate3d(0,0,0)}
+.work-card{width:clamp(290px,61vw,850px);flex:0 0 auto;position:relative}
+.work-art{height:clamp(240px,48vh,550px);min-height:240px;position:relative;overflow:hidden;isolation:isolate;display:flex;align-items:flex-end;padding:clamp(18px,3vw,38px);color:#111;transition:filter .45s}
+.work-card:hover .work-art{filter:saturate(1.12)}
+.work-art:before,.work-art:after{content:"";position:absolute;z-index:-1;transition:transform .9s cubic-bezier(.22,1,.36,1)}
+.work-card:hover .work-art:before{transform:scale(1.08) rotate(-4deg)}
+.work-art.art-one{background:linear-gradient(135deg,#ff2bd6 0%,#8b5cf6 100%)}.art-one:before{width:55%;aspect-ratio:1;border-radius:50%;background:#00fdfe;right:5%;top:-10%;box-shadow:0 0 0 30px #1111,0 0 0 60px #1111}
+.work-art.art-one:after{width:30%;height:75%;right:22%;bottom:-12%;background:#111;transform:rotate(22deg);border-radius:48% 48% 5% 5%}
+.work-art.art-two{background:linear-gradient(135deg,#00fdfe 0%,#397bff 100%)}.art-two:before{inset:12% 8%;border:2px solid #111;border-radius:50%;transform:rotate(-22deg) scaleX(1.3)}.art-two:after{width:48%;aspect-ratio:1;background:#00fdfe;border-radius:50%;left:24%;top:12%;mix-blend-mode:multiply}
+.work-art.art-three{background:#00fdfe}.art-three:before{width:78%;height:48%;left:12%;top:20%;background:repeating-linear-gradient(90deg,#111 0 3px,transparent 3px 17px);transform:skewY(-18deg)}.art-three:after{width:50%;height:60%;border:2px solid #111;right:9%;bottom:-10%;border-radius:50%;transform:rotate(30deg)}
+.work-art.art-four{background:linear-gradient(135deg,#17131d 0%,#8b5cf6 55%,#ff2bd6 100%)}.art-four:before{width:58%;aspect-ratio:1;border-radius:50%;background:#00fdfe;left:21%;top:-10%;box-shadow:inset -30px -20px 0 #1111}.art-four:after{width:70%;height:15%;left:15%;bottom:18%;background:#111;transform:rotate(-14deg)}
+.work-art.art-five{background:#00fdfe}.art-five:before{width:70%;height:70%;right:8%;top:8%;border:2px solid #111;border-radius:50%;box-shadow:0 0 0 18px #1111,0 0 0 36px #1111}.art-five:after{width:55%;height:18%;left:12%;top:42%;background:#111;transform:rotate(-28deg)}
+.art-index{position:absolute;left:clamp(18px,3vw,38px);top:clamp(18px,3vw,38px);font-size:9px;letter-spacing:.13em;text-transform:uppercase}
+.art-title{position:relative;z-index:1;margin:0;font-size:clamp(42px,6vw,78px);line-height:.83;letter-spacing:-.09em;font-weight:800}
+.art-arrow{position:absolute;right:clamp(18px,3vw,38px);bottom:clamp(18px,3vw,38px);width:42px;height:42px;border:1px solid #111;border-radius:50%;display:grid;place-items:center;font-size:22px;transition:transform .35s,background .35s}
+.work-card:hover .art-arrow{transform:rotate(45deg);background:var(--magenta);border-color:var(--magenta);color:#111;box-shadow:0 0 22px #ff2bd677}
+.work-meta{display:flex;justify-content:space-between;gap:12px;padding-top:12px;color:#8d8984;font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+.work-progress{padding:0 var(--gutter);display:flex;align-items:center;gap:18px;color:#aaa;font-size:10px;letter-spacing:.1em}
+.progress-line{height:2px;background:#444;flex:1;overflow:hidden}
+.progress-fill{height:100%;width:0;background:var(--accent);transform-origin:left}
+.work-end-link{color:var(--ink);white-space:nowrap}
+@media(max-width:760px){
+ .clients-head{display:block}.clients-note{margin-top:22px}.client-wordmark{min-width:130px;height:55px}
+ .work-sticky{top:64px;min-height:540px;height:calc(100svh - 64px);padding-top:28px}
+ .work-heading{align-items:flex-start;display:block}.work-heading-side{margin-top:18px;align-items:center;justify-content:space-between}.work-instruction{margin:0;max-width:300px}.work-nav{width:40px;height:40px}
+ .pin-spacer-workHorizontalSequence{height:auto!important}
+ .work-section{height:auto!important;overflow:hidden}
+ .work-sticky{position:relative;top:auto;height:auto;min-height:0;gap:38px;padding-bottom:28px}
+ .work-viewport{overflow-x:auto;overflow-y:hidden;padding-right:var(--gutter);scroll-snap-type:x mandatory;cursor:grab}
+ .work-track{width:max-content;transform:none!important}
+ .work-card{width:82vw;scroll-snap-align:start}.work-art{height:36vh;min-height:220px}.work-heading h2{font-size:clamp(52px,14vw,90px)}
+ .work-meta{font-size:9px}.work-progress{gap:10px}
+}
+@media(max-width:760px){.work-progress{position:relative}.work-end-link{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.client-track{animation:none}.work-track{transform:none!important}}
+
+/* Tipografía de marca: Outfit para titulares, Manrope para lectura */
+.menu-overlay a,.hero h1,.intro-title,.method-heading h2,.method-card h3,.closing h2,.work-heading h2,.art-title,.clients-head h2{font-family:"Outfit","Manrope",sans-serif;font-weight:800;letter-spacing:-.055em}
+
+/* PALETA NEVERMIND: cyan de marca + acentos cyberpunk */
+:root{
+  --magenta:#ff2bd6;
+  --purple:#8b5cf6;
+  --electric-blue:#397bff;
+  --acid:#e7ff35;
+}
+.hero-glow{background:radial-gradient(ellipse at center,rgba(139,92,246,.30),rgba(255,43,214,.18) 42%,transparent 72%)}
+.eyebrow{color:var(--accent)}
+.work-heading .eyebrow,.work-progress{ text-shadow:0 0 18px rgba(0,253,254,.22)}
+.work-art.art-one{box-shadow:inset 0 0 0 1px rgba(231,255,53,.18)}
+.work-art.art-two{box-shadow:inset 0 0 0 1px rgba(57,123,255,.22)}
+.work-art.art-three{box-shadow:inset 0 0 0 1px rgba(0,253,254,.22)}
+.work-art.art-four{background:linear-gradient(135deg,#17131d 0%,#8b5cf6 48%,#ff2bd6 100%)}
+.work-art.art-five{background:linear-gradient(135deg,#00fdfe 0%,#397bff 58%,#8b5cf6 100%)}
+.hero-cta:hover,.menu-toggle:hover,.work-nav:hover{box-shadow:0 0 24px rgba(0,253,254,.22)}
+.closing{background:linear-gradient(120deg,#00fdfe 0%,#397bff 46%,#8b5cf6 100%);position:relative;isolation:isolate;overflow:hidden}
+.closing:after{content:"";position:absolute;z-index:-1;width:45vw;aspect-ratio:1;border:1px solid rgba(255,255,255,.24);border-radius:50%;right:-12vw;top:-20vw;box-shadow:0 0 0 35px rgba(255,43,214,.08),0 0 0 80px rgba(231,255,53,.07)}
+.closing .eyebrow{color:#111!important}
+.closing-link{font:inherit;background:transparent;color:#111;cursor:pointer}
+.closing-link:hover{background:#111;color:var(--acid);border-color:#111}
+.footer-social a:hover{color:var(--magenta)}
+
+/* Modal de contacto: glass oscuro, acentos neon y formulario responsive */
+.contact-modal{position:fixed;z-index:300;inset:0;display:grid;place-items:center;padding:22px;visibility:hidden;opacity:0;transition:opacity .35s,visibility .35s}
+.contact-modal.is-open{visibility:visible;opacity:1}
+.contact-backdrop{position:absolute;inset:0;background:rgba(5,5,12,.76);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px)}
+.contact-dialog{position:relative;width:min(780px,100%);max-height:min(90vh,900px);overflow:auto;background:linear-gradient(145deg,#191522,#101014 65%);color:#f5f3ef;border:1px solid rgba(0,253,254,.35);border-radius:22px;padding:clamp(25px,4vw,48px);box-shadow:0 25px 100px rgba(0,0,0,.55),0 0 55px rgba(139,92,246,.14);transform:translateY(22px) scale(.985);transition:transform .45s cubic-bezier(.22,1,.36,1)}
+.contact-modal.is-open .contact-dialog{transform:translateY(0) scale(1)}
+.contact-dialog:before{content:"";position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(90deg,var(--magenta),var(--purple),var(--accent),var(--acid))}
+.contact-close{position:absolute;right:20px;top:16px;width:42px;height:42px;border:1px solid #555;border-radius:50%;background:transparent;color:white;font-size:27px;line-height:1;cursor:pointer;transition:.25s}
+.contact-close:hover{background:var(--magenta);border-color:var(--magenta);color:#111;transform:rotate(90deg)}
+.contact-modal-head .eyebrow{font-size:10px;letter-spacing:.17em;color:var(--accent);font-weight:800}
+.contact-modal-head .eyebrow span{color:var(--magenta);font-size:16px;margin-left:5px}
+.contact-modal-head h2{font-family:"Outfit","Manrope",sans-serif;font-size:clamp(48px,8vw,82px);line-height:.9;letter-spacing:-.065em;margin:18px 0 12px;font-weight:800}
+.contact-dot{color:var(--accent)}
+.contact-modal-head>p:last-child{color:#aaa6b5;max-width:520px;font-size:14px;line-height:1.6;margin:0 0 28px}
+.contact-fields{display:grid;grid-template-columns:1fr 1fr;gap:17px 20px}
+.contact-field{display:flex;flex-direction:column;gap:8px;color:#e9e6ee;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:700}
+.field-optional{color:#777;font-size:9px;font-weight:500;text-transform:none;letter-spacing:0}
+.contact-field input,.contact-field select,.contact-field textarea{width:100%;border:1px solid #393543;border-radius:9px;background:#211e29;color:#f5f3ef;padding:14px 13px;font:500 13px "Manrope",sans-serif;letter-spacing:0;text-transform:none;outline:none;transition:border-color .25s,box-shadow .25s}
+.contact-field input::placeholder,.contact-field textarea::placeholder{color:#777280}
+.contact-field input:focus,.contact-field select:focus,.contact-field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(0,253,254,.10)}
+.contact-field select{color-scheme:dark}
+.contact-services{border:0;padding:0;margin:25px 0 20px}
+.contact-services legend{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin-bottom:13px}
+.contact-services legend span{color:#8e8999;font-size:10px;text-transform:none;letter-spacing:0;font-weight:400;margin-left:7px}
+.service-options{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.service-options label{position:relative;cursor:pointer}
+.service-options input{position:absolute;opacity:0;pointer-events:none}
+.service-options span{display:flex;align-items:center;min-height:42px;padding:10px 12px 10px 35px;border:1px solid #393543;border-radius:8px;color:#bcb7c5;font-size:11px;transition:.2s}
+.service-options span:before{content:"+";position:absolute;left:13px;color:var(--magenta);font-size:17px}
+.service-options input:checked+span{border-color:var(--accent);background:rgba(0,253,254,.09);color:white}
+.service-options input:checked+span:before{content:"✓";color:var(--accent)}
+.service-options input:focus-visible+span{outline:2px solid var(--accent);outline-offset:3px}
+.contact-message{margin-top:3px}
+.contact-field textarea{resize:vertical;min-height:90px}
+.contact-submit-row{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-top:22px}
+.contact-submit-row p{max-width:300px;color:#85808f;font-size:10px;line-height:1.5;margin:0}
+.contact-submit{border:0;border-radius:50px;background:var(--accent);color:#111;padding:15px 21px;font:800 11px "Manrope",sans-serif;letter-spacing:.07em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:28px;transition:.25s}
+.contact-submit:hover{background:var(--acid);transform:translateY(-2px);box-shadow:0 0 25px rgba(231,255,53,.2)}
+.contact-feedback{min-height:16px;color:var(--acid);font-size:11px;margin:10px 0 0}
+body.contact-open{overflow:hidden}
+@media(max-width:600px){
+ .contact-modal{padding:10px}
+ .contact-dialog{padding:28px 19px 22px;border-radius:16px;max-height:94vh}
+ .contact-fields,.service-options{grid-template-columns:1fr}
+ .contact-submit-row{align-items:flex-start;flex-direction:column}
+ .contact-submit{width:100%;justify-content:space-between}
+}
+@media(prefers-reduced-motion:reduce){.contact-modal,.contact-dialog,.contact-close{transition:none}}
+
+
+/* =========================================================
+   V8 — ajuste visual solicitado
+   Clientes en tarjetas cuadradas, sin líneas divisorias.
+   ========================================================= */
+.clients-section{
+  padding:clamp(76px,9vw,132px) var(--gutter);
+  background:#f4f2ee;
+  color:#111;
+  overflow:hidden;
+}
+.clients-head{
+  padding:0;
+  margin-bottom:clamp(30px,5vw,64px);
+  align-items:flex-end;
+}
+.clients-head h2{color:#111;max-width:850px}
+.clients-head .eyebrow{color:#6f6b70}
+.clients-note{color:#555;max-width:260px}
+.clients-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:12px;
+}
+.client-card{
+  min-height:clamp(210px,25vw,340px);
+  aspect-ratio:1.08/1;
+  padding:clamp(18px,2.6vw,36px);
+  background:#fbfaf8;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+  transition:background .35s ease,transform .35s ease;
+}
+.client-card::before{
+  content:"";
+  position:absolute;
+  width:54%;
+  aspect-ratio:1;
+  border-radius:50%;
+  background:var(--accent);
+  opacity:0;
+  transform:scale(.55);
+  transition:transform .45s ease,opacity .35s ease;
+  z-index:-1;
+}
+.client-card:hover{background:#fff;transform:translateY(-5px)}
+.client-card:hover::before{opacity:.13;transform:scale(1.2)}
+.client-logo{
+  color:#111;
+  font-size:clamp(24px,3.1vw,46px);
+  font-weight:800;
+  line-height:.95;
+  letter-spacing:-.075em;
+  text-align:center;
+}
+.client-logo-bold{font-weight:900;letter-spacing:-.09em}
+.client-logo-round{font-weight:650;letter-spacing:-.08em}
+.client-logo-serif{font-family:Georgia,serif;font-style:italic;font-weight:600;letter-spacing:-.07em}
+.client-logo-wide{font-size:clamp(28px,3.8vw,54px);letter-spacing:-.1em}
+.client-logo-orbit{font-weight:800;letter-spacing:-.09em}
+.client-logo-orbit span{color:var(--accent);font-size:.45em;vertical-align:top;margin-left:2px}
+.client-logo-minimal{font-weight:500;letter-spacing:.08em}
+.client-caption{
+  position:absolute;
+  bottom:clamp(14px,2vw,24px);
+  color:#777;
+  font-size:9px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  opacity:0;
+  transform:translateY(5px);
+  transition:opacity .3s ease,transform .3s ease;
+}
+.client-card:hover .client-caption{opacity:1;transform:translateY(0)}
+.clients-disclaimer{
+  margin:16px 0 0;
+  color:#888;
+  font-size:9px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+/* Titular de propuesta: contraste contundente para "dirección" */
+.intro-title{max-width:1450px;letter-spacing:-.09em}
+.intro-title .highlight{
+  display:inline-block;
+  padding:.015em .12em .07em;
+  color:#111;
+  background:var(--accent);
+  box-decoration-break:clone;
+  -webkit-box-decoration-break:clone;
+}
+@media(max-width:900px){
+  .clients-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .client-card{min-height:clamp(190px,34vw,280px)}
+}
+@media(max-width:520px){
+  .clients-section{padding-left:18px;padding-right:18px}
+  .clients-grid{gap:8px}
+  .client-card{min-height:165px;padding:14px}
+  .client-caption{font-size:8px;letter-spacing:.08em}
+  .clients-head{display:block}
+  .clients-note{margin-top:18px}
+}
+
+
+/* V9 — cenefa horizontal compacta de aliados */
+.clients-section{
+  padding:clamp(76px,9vw,128px) 0 clamp(58px,7vw,90px);
+  background:#f4f2ee;
+  color:#111;
+  overflow:hidden;
+}
+.clients-head{padding:0 var(--gutter);margin-bottom:clamp(28px,4vw,48px)}
+.clients-head h2{color:#111}
+.clients-head .eyebrow{color:#777}
+.clients-note{color:#555}
+.clients-ribbon{
+  position:relative;
+  width:100%;
+  overflow:hidden;
+  border-top:1px solid rgba(17,17,17,.16);
+  border-bottom:1px solid rgba(17,17,17,.16);
+  padding:clamp(23px,3vw,36px) 0;
+  background:rgba(255,255,255,.34);
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 5%,#000 95%,transparent 100%);
+}
+.clients-ribbon-track{display:flex;width:max-content;will-change:transform;animation:alliesRibbon 42s linear infinite}
+.clients-ribbon-group{display:flex;align-items:center;flex:0 0 auto}
+.client-wordmark{
+  min-width:clamp(180px,21vw,290px);
+  height:clamp(58px,7vw,88px);
+  padding:0 clamp(26px,3.6vw,54px);
+  display:flex;align-items:center;justify-content:center;
+  color:#171717;white-space:nowrap;text-align:center;
+  font-size:clamp(24px,2.8vw,39px);font-weight:800;
+  letter-spacing:-.075em;line-height:1;
+  opacity:.76;filter:grayscale(1);
+  transition:opacity .3s ease,transform .3s ease,color .3s ease;
+  position:relative;
+}
+.client-wordmark+.client-wordmark:before{
+  content:"";position:absolute;left:0;top:25%;height:50%;width:1px;background:rgba(17,17,17,.13)
+}
+.client-wordmark:hover{opacity:1;color:#111;transform:translateY(-2px);filter:none}
+.wordmark-bold{font-weight:900;letter-spacing:-.095em}
+.wordmark-round{font-weight:650;letter-spacing:-.08em}
+.wordmark-serif{font-family:Georgia,serif;font-style:italic;font-weight:600;letter-spacing:-.07em}
+.wordmark-wide{font-size:clamp(24px,2.9vw,39px);letter-spacing:-.1em}
+.wordmark-orbit{font-weight:800;letter-spacing:-.09em}
+.wordmark-orbit span{color:var(--accent);font-size:.45em;vertical-align:top;margin-left:2px}
+.wordmark-minimal{font-weight:500;letter-spacing:.1em;font-size:clamp(18px,2.1vw,28px)}
+.clients-ribbon:hover .clients-ribbon-track{animation-play-state:paused}
+@keyframes alliesRibbon{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:600px){
+ .clients-section{padding:70px 0 58px}
+ .clients-head{display:block;margin-bottom:28px}
+ .clients-note{margin-top:16px}
+ .clients-ribbon{padding:15px 0}
+ .client-wordmark{min-width:160px;height:58px;padding:0 24px;font-size:23px}
+ .wordmark-wide{font-size:24px}.wordmark-minimal{font-size:17px}
+}
+@media(prefers-reduced-motion:reduce){.clients-ribbon-track{animation:none;transform:none}.clients-ribbon{overflow-x:auto;mask-image:none;-webkit-mask-image:none}}
+
+
+
+/* =========================================================
+   V11 — Isotipo NEVERMIND como recurso gráfico de marca
+   Requiere exportar isologo-nevermind.ai a SVG y guardarlo
+   en /images/isologo-nevermind.svg (formato web).
+   ========================================================= */
+.hero{position:relative}
+.hero-isotype{
+  position:absolute;z-index:-1;right:clamp(24px,7vw,110px);top:50%;
+  width:clamp(170px,25vw,390px);aspect-ratio:1;transform:translateY(-52%);
+  display:grid;place-items:center;pointer-events:none;opacity:.18;
+  filter:drop-shadow(0 0 34px rgba(0,253,254,.22));
+  animation:isotypeFloat 12s ease-in-out infinite alternate;
+}
+.hero-isotype img{width:100%;height:100%;object-fit:contain}
+@keyframes isotypeFloat{from{transform:translate3d(0,-54%,0) rotate(-7deg) scale(.96)}to{transform:translate3d(-2vw,-47%,0) rotate(7deg) scale(1.04)}}
+/* Isotipo como textura de marca: discreto, grande y de baja opacidad */
+.section-intro,.method,.closing,.clients-section{isolation:isolate}
+.section-intro:after,.method:after,.closing:after,.clients-section:after{
+  content:"";position:absolute;z-index:-1;pointer-events:none;
+  background-image:url("images/isologo-nevermind.svg");background-repeat:no-repeat;
+  background-size:contain;opacity:.045;filter:grayscale(1);
+}
+.section-intro:after{width:min(48vw,650px);aspect-ratio:1;right:-8vw;bottom:-13%;transform:rotate(-14deg)}
+.method:after{width:min(38vw,520px);aspect-ratio:1;left:-9vw;top:12%;transform:rotate(18deg);opacity:.035}
+.closing:after{width:min(45vw,600px);aspect-ratio:1;right:-8vw;top:4%;opacity:.10;mix-blend-mode:soft-light}
+.clients-section:after{width:min(30vw,390px);aspect-ratio:1;left:-8vw;top:-20%;opacity:.035}
+/* El isotipo se integra a microdetalles y bullets, no como decoración excesiva */
+.eyebrow:before,.pillar small:before,.method-number:before,.art-index:before,.work-progress #workCount:before{
+  content:"";display:inline-block;width:9px;height:9px;margin:0 9px 0 0;
+  vertical-align:middle;background:url("images/isologo-nevermind.svg") center/contain no-repeat;
+  opacity:.9;filter:drop-shadow(0 0 5px rgba(0,253,254,.38));
+}
+.eyebrow:before{width:10px;height:10px}
+.pillar small:before,.method-number:before,.art-index:before{width:8px;height:8px}
+/* Cenefa: marca en el centro con el isotipo como pequeño separador */
+.client-wordmark+.client-wordmark:before{
+  content:"";width:12px;height:12px;border:0;background:url("images/isologo-nevermind.svg") center/contain no-repeat;
+  opacity:.45;left:-6px;top:50%;transform:translateY(-50%);
+}
+@media(max-width:700px){
+ .hero-isotype{width:clamp(145px,43vw,260px);right:-7vw;top:44%;opacity:.13}
+ .section-intro:after,.method:after,.closing:after,.clients-section:after{opacity:.025}
+}
+@media(prefers-reduced-motion:reduce){.hero-isotype{animation:none}}
+
+</style>
+</head>
+<body>
+<header class="site-header" id="siteHeader">
+  <a class="brand" href="#inicio" aria-label="NEVERMIND, inicio"><img src="images/logo-nevermind.svg" alt="NEVERMIND"></a>
+  <div class="header-actions">
+    <span class="header-caption">Marketing con dirección</span>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="menuOverlay">
+      <span>Menú</span><span class="menu-icon" id="menuIcon" aria-hidden="true">＋</span>
+    </button>
+  </div>
+</header>
+
+<nav class="menu-overlay" id="menuOverlay" aria-label="Navegación principal">
+  <a href="#que-hacemos">Qué hacemos <span>↘</span></a>
+  <a href="#clientes">Nuestros clientes <span>↘</span></a>
+  <a href="#nuestro-trabajo">Nuestro Trabajo <span>↘</span></a>
+  <a href="#como-trabajamos">Cómo trabajamos <span>↘</span></a>
+  <a href="#hablemos">Hablemos <span>↘</span></a>
+  <div class="menu-foot">NEVERMIND · Marketing con dirección</div>
+</nav>
+
+<main>
+  <!-- PANTALLA 1 / HERO -->
+  <section class="hero" id="inicio">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+      <source src="images/video-never.mp4" type="video/mp4">
+    </video>
+    <div class="hero-video-shade" aria-hidden="true"></div>
+    <div class="hero-glow" aria-hidden="true"></div>
+    <div class="hero-isotype" aria-hidden="true"><img src="images/isologo-nevermind.svg" alt=""></div>
+    <div>
+      <p class="eyebrow reveal">NEVERMIND</p>
+      <h1 class="reveal delay-1">Marketing<br>con <span class="wordmark">dirección.</span></h1>
+    </div>
+    <div class="hero-bottom">
+      <div>
+        <p class="hero-copy reveal delay-2">Estrategia, creatividad y ejecución para marcas que quieren avanzar.</p>
+        <p class="scroll-note reveal delay-3">Desliza para descubrir</p>
+      </div>
+      <a class="hero-cta reveal delay-2" href="#hablemos">Hablemos <span>↘</span></a>
+    </div>
+  </section>
+
+  <!-- PANTALLA 2 / PROPUESTA DE VALOR -->
+  <section class="section-intro" id="que-hacemos">
+    <p class="eyebrow reveal">Qué hacemos</p>
+    <h2 class="intro-title reveal">¿Tu marketing<br>tiene <span class="highlight">dirección?</span></h2>
+    <div class="intro-lower">
+      <p class="intro-copy reveal delay-1">Tienes ideas, proveedores, canales y acciones. Nosotros hacemos que todo tenga un propósito.</p>
+      <div class="pillars">
+        <article class="pillar reveal"><small>01 / Estrategia</small><strong>Saber<br>qué hacer.</strong></article>
+        <article class="pillar reveal delay-1"><small>02 / Ejecución</small><strong>Hacer<br>que pase.</strong></article>
+        <article class="pillar reveal delay-2"><small>03 / Resultados</small><strong>Saber qué<br>funcionó.</strong></article>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- CLIENTES / CENEFA HORIZONTAL DE MARCAS -->
+  <section class="clients-section" id="clientes" aria-label="Clientes y alianzas">
+    <div class="clients-head">
+      <div>
+        <p class="eyebrow reveal">Marcas con las que avanzamos</p>
+        <h2 class="reveal">Buenas ideas.<br>Grandes aliados.</h2>
+      </div>
+      <p class="clients-note reveal delay-1">Las mejores ideas crecen cuando se construyen en equipo.</p>
+    </div>
+    <div class="clients-ribbon" aria-label="Marcas y aliados">
+      <div class="clients-ribbon-track">
+        <div class="clients-ribbon-group">
+          <span class="client-wordmark wordmark-bold">NOVA</span>
+          <span class="client-wordmark wordmark-round">altavia</span>
+          <span class="client-wordmark wordmark-serif">NORTHSTAR</span>
+          <span class="client-wordmark wordmark-wide">FORMA</span>
+          <span class="client-wordmark wordmark-orbit">orbit<span>®</span></span>
+          <span class="client-wordmark wordmark-minimal">MODO</span>
+        </div>
+        <div class="clients-ribbon-group" aria-hidden="true">
+          <span class="client-wordmark wordmark-bold">NOVA</span>
+          <span class="client-wordmark wordmark-round">altavia</span>
+          <span class="client-wordmark wordmark-serif">NORTHSTAR</span>
+          <span class="client-wordmark wordmark-wide">FORMA</span>
+          <span class="client-wordmark wordmark-orbit">orbit<span>®</span></span>
+          <span class="client-wordmark wordmark-minimal">MODO</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NUESTRO TRABAJO / PIN SPACER: el scroll vertical controla el recorrido horizontal -->
+  <div class="pin-spacer pin-spacer-workHorizontalSequence" id="workPinSpacer" data-pin-spacer="work-horizontal">
+  <section class="work-section" id="nuestro-trabajo" aria-label="Galería de proyectos">
+    <div class="work-sticky">
+      <div class="work-heading">
+        <div><p class="eyebrow">Ideas en movimiento · 01—05</p><h2>Nuestro<br>Trabajo<span style="color:var(--accent)">.</span></h2></div>
+        <div class="work-heading-side"><p class="work-instruction">Un recorrido por ideas, marcas y experiencias. Desliza hacia abajo o usa las flechas para explorar la galería.</p><div class="work-controls" aria-label="Controles de la galería"><button type="button" class="work-nav" id="workPrev" aria-label="Proyecto anterior">←</button><button type="button" class="work-nav" id="workNext" aria-label="Proyecto siguiente">→</button></div></div>
+      </div>
+      <div class="work-viewport"><div class="work-track" id="workTrack">
+        <article class="work-card"><a href="#hablemos" aria-label="Conocer proyecto Forma"><div class="work-art art-one"><span class="art-index">01 / Lanzamiento de marca</span><h3 class="art-title">UNA MARCA<br>EN ESCENA.</h3><span class="art-arrow">↗</span></div></a><div class="work-meta"><span>Lanzamiento · Concepto y dirección creativa</span><span>2026</span></div></article>
+        <article class="work-card"><a href="#hablemos" aria-label="Conocer proyecto Orbit"><div class="work-art art-two"><span class="art-index">02 / Experiencia de marca</span><h3 class="art-title">VIVE LA<br>EXPERIENCIA.</h3><span class="art-arrow">↗</span></div></a><div class="work-meta"><span>Activación BTL · Diseño de experiencia</span><span>2026</span></div></article>
+        <article class="work-card"><a href="#hablemos" aria-label="Conocer proyecto Bloom"><div class="work-art art-three"><span class="art-index">03 / Gran evento</span><h3 class="art-title">EL MOMENTO<br>ES AHORA.</h3><span class="art-arrow">↗</span></div></a><div class="work-meta"><span>Evento de lanzamiento · Producción y montaje</span><span>2025</span></div></article>
+        <article class="work-card"><a href="#hablemos" aria-label="Conocer proyecto Next"><div class="work-art art-four"><span class="art-index">04 / Montaje escenográfico</span><h3 class="art-title">ESPACIOS<br>QUE IMPACTAN.</h3><span class="art-arrow">↗</span></div></a><div class="work-meta"><span>Escenografía · Ambientación y montaje</span><span>2025</span></div></article>
+        <article class="work-card"><a href="#hablemos" aria-label="Conocer proyecto Kinetik"><div class="work-art art-five"><span class="art-index">05 / Activación BTL</span><h3 class="art-title">CONECTA.<br>ACTIVA. SORPRENDE.</h3><span class="art-arrow">↗</span></div></a><div class="work-meta"><span>Experiencia en vivo · Activación de marca</span><span>2025</span></div></article>
+      </div></div>
+      <div class="work-progress"><span id="workCount">01 / 05</span><div class="progress-line"><div class="progress-fill" id="workProgress"></div></div><a class="work-end-link" href="#hablemos">¿Creamos algo? ↗</a></div>
+    </div>
+  </section>
+  </div>
+
+  <!-- PANTALLA 3 / MÉTODO -->
+  <section class="method" id="como-trabajamos">
+    <div class="method-heading">
+      <div>
+        <p class="eyebrow reveal">Cómo trabajamos</p>
+        <h2 class="reveal">Pensamos.<br>Hacemos.<br>Medimos.</h2>
+      </div>
+      <p class="method-aside reveal delay-1">Conectamos pensamiento estratégico, creatividad y acción para que cada iniciativa tenga un propósito.</p>
+    </div>
+    <div class="method-grid">
+      <article class="method-card reveal">
+        <span class="method-number">01 / ESTRATEGIA</span>
+        <span class="method-symbol" aria-hidden="true">↗</span>
+        <div><h3>Estrategia</h3><p>Definimos el rumbo, los públicos, los canales y las prioridades.</p></div>
+      </article>
+      <article class="method-card reveal delay-1">
+        <span class="method-number">02 / CREATIVIDAD</span>
+        <span class="method-symbol" aria-hidden="true">✳</span>
+        <div><h3>Creatividad</h3><p>Convertimos la estrategia en campañas, contenidos y experiencias.</p></div>
+      </article>
+      <article class="method-card reveal delay-2">
+        <span class="method-number">03 / EJECUCIÓN</span>
+        <span class="method-symbol" aria-hidden="true">⌁</span>
+        <div><h3>Ejecución</h3><p>Hacemos que las ideas pasen: digital, BTL, eventos, comunicación y más.</p></div>
+      </article>
+    </div>
+    <p class="method-note reveal">Desde una estrategia completa hasta <span>una acción puntual.</span></p>
+  </section>
+
+  <!-- CIERRE / CTA -->
+  <section class="closing" id="hablemos">
+    <p class="eyebrow reveal" style="color:#5b203d">NEVERMIND · Marketing con dirección</p>
+    <h2 class="reveal">Cuéntanos qué<br>estás buscando.</h2>
+    <div class="closing-bottom">
+      <p class="reveal delay-1">Hablemos de lo que tu marca necesita para avanzar.</p>
+      <!-- Reemplazar el correo de ejemplo por el correo oficial del cliente -->
+      <button class="closing-link reveal delay-2" type="button" id="contactOpen">Hablemos <span>↗</span></button>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-top">
+    <div>
+      <a class="footer-brand" href="#inicio" aria-label="NEVERMIND, volver al inicio"><img src="images/logo-nevermind.svg" alt="NEVERMIND"></a>
+      <p class="footer-tagline">Marketing con dirección.</p>
+    </div>
+    <nav class="footer-social" aria-label="Redes y contacto">
+      <!-- Sustituir los enlaces # por las URL oficiales -->
+      <a href="#" aria-label="Instagram">Instagram ↗</a>
+      <a href="#" aria-label="LinkedIn">LinkedIn ↗</a>
+      <a href="mailto:olver.x@gmail.com,lpdiseno@gmail.com">Email ↗</a>
+    </nav>
+  </div>
+  <div class="footer-bottom"><span>© <span id="year"></span> NEVERMIND</span><a href="#inicio">Volver arriba ↑</a></div>
+</footer>
+
+
+<!-- MODAL DE CONTACTO NEVERMIND -->
+<div class="contact-modal" id="contactModal" aria-hidden="true">
+  <div class="contact-backdrop" data-contact-close></div>
+  <section class="contact-dialog" role="dialog" aria-modal="true" aria-labelledby="contactTitle" aria-describedby="contactIntro">
+    <button class="contact-close" type="button" id="contactClose" aria-label="Cerrar formulario">×</button>
+    <div class="contact-modal-head">
+      <p class="eyebrow">HAGAMOS QUE PASE <span>✳</span></p>
+      <h2 id="contactTitle">Hablemos<span class="contact-dot">.</span></h2>
+      <p id="contactIntro">Las buenas ideas empiezan con una conversación. Cuéntanos qué tienes en mente.</p>
+    </div>
+    <form class="contact-form" id="contactForm">
+      <div class="contact-fields">
+        <label class="contact-field">Nombre
+          <input name="nombre" type="text" autocomplete="name" placeholder="¿Cómo te llamas?" required>
+        </label>
+        <label class="contact-field">Empresa
+          <input name="empresa" type="text" autocomplete="organization" placeholder="¿Desde qué empresa nos escribes?" required>
+        </label>
+        <label class="contact-field">WhatsApp
+          <input name="whatsapp" type="tel" placeholder="Número de WhatsApp">
+        </label>
+        <label class="contact-field">¿Por qué nos contactas?
+          <select name="interes" required>
+            <option value="" selected disabled>Selecciona una opción</option>
+            <option>Quiero impulsar mi marca</option>
+            <option>Necesito una estrategia de marketing</option>
+            <option>Quiero desarrollar una campaña</option>
+            <option>Busco una experiencia digital</option>
+            <option>Quiero una alianza o colaboración</option>
+            <option>Tengo otra idea</option>
+          </select>
+        </label>
+      </div>
+      <fieldset class="contact-services">
+        <legend>¿En qué podemos ayudarte? <span>Puedes elegir varias</span></legend>
+        <div class="service-options">
+          <label><input type="checkbox" name="servicios" value="Estrategia de marca"><span>Estrategia de marca</span></label>
+          <label><input type="checkbox" name="servicios" value="Marketing y crecimiento"><span>Marketing y crecimiento</span></label>
+          <label><input type="checkbox" name="servicios" value="Creatividad y campañas"><span>Creatividad y campañas</span></label>
+          <label><input type="checkbox" name="servicios" value="Diseño y experiencia digital"><span>Diseño y experiencia digital</span></label>
+          <label><input type="checkbox" name="servicios" value="Contenido y producción"><span>Contenido y producción</span></label>
+          <label><input type="checkbox" name="servicios" value="Consultoría y dirección"><span>Consultoría y dirección</span></label>
+        </div>
+      </fieldset>
+      <label class="contact-field contact-message">Cuéntanos un poco más
+        <textarea name="mensaje" rows="3" placeholder="El reto, la idea, el proyecto… te leemos."></textarea>
+      </label>
+      <div class="contact-submit-row">
+        <p>Tu mensaje llegará directamente al equipo NEVERMIND.</p>
+        <button class="contact-submit" type="submit">Enviar mensaje <span>↗</span></button>
+      </div>
+      <p class="contact-feedback" id="contactFeedback" aria-live="polite"></p>
+    </form>
+  </section>
+</div>
+
+<script>
+(() => {
+  const header = document.getElementById('siteHeader');
+  const toggle = document.getElementById('menuToggle');
+  const menu = document.getElementById('menuOverlay');
+  const icon = document.getElementById('menuIcon');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+
+  // Modal de contacto accesible: apertura, cierre, Escape y envío por correo.
+  const contactModal = document.getElementById('contactModal');
+  const contactOpen = document.getElementById('contactOpen');
+  const contactClose = document.getElementById('contactClose');
+  const contactForm = document.getElementById('contactForm');
+  const contactFeedback = document.getElementById('contactFeedback');
+  let contactPreviousFocus = null;
+
+  function openContact(){
+    if(!contactModal) return;
+    contactPreviousFocus = document.activeElement;
+    contactModal.classList.add('is-open');
+    contactModal.setAttribute('aria-hidden','false');
+    document.body.classList.add('contact-open');
+    window.setTimeout(()=>contactClose?.focus(),80);
+  }
+  function closeContact(){
+    if(!contactModal) return;
+    contactModal.classList.remove('is-open');
+    contactModal.setAttribute('aria-hidden','true');
+    document.body.classList.remove('contact-open');
+    contactPreviousFocus?.focus?.();
+  }
+  contactOpen?.addEventListener('click',openContact);
+  contactClose?.addEventListener('click',closeContact);
+  contactModal?.querySelectorAll('[data-contact-close]').forEach(el=>el.addEventListener('click',closeContact));
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape' && contactModal?.classList.contains('is-open')) closeContact();
+  });
+
+  contactForm?.addEventListener('submit', async event=>{
+    event.preventDefault();
+    if(!contactForm.reportValidity()) return;
+
+    const submitButton = contactForm.querySelector('button[type="submit"]');
+    const originalButton = submitButton?.innerHTML;
+    const payload = new FormData(contactForm);
+
+    if(submitButton){
+      submitButton.disabled = true;
+      submitButton.textContent = 'Enviando…';
+    }
+    if(contactFeedback) contactFeedback.textContent = 'Estamos enviando tu mensaje…';
+
+    try{
+      const response = await fetch('contacto.php', {
+        method: 'POST',
+        body: payload,
+        headers: {'Accept':'application/json'}
+      });
+      const result = await response.json();
+
+      if(!response.ok || !result.success){
+        throw new Error(result.message || 'No fue posible enviar el mensaje. Inténtalo nuevamente.');
+      }
+
+      if(contactFeedback) contactFeedback.textContent = '¡Mensaje enviado! Gracias por contactarnos. Pronto estaremos en contacto.';
+      contactForm.reset();
+    }catch(error){
+      if(contactFeedback) contactFeedback.textContent = error.message || 'Ocurrió un error al enviar. Inténtalo nuevamente.';
+    }finally{
+      if(submitButton){
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButton || 'Enviar mensaje <span>↗</span>';
+      }
+    }
+  });
+
+  // Menú overlay: apertura, cierre, teclado y navegación.
+  function closeMenu(){
+    menu.classList.remove('open');
+    toggle.setAttribute('aria-expanded', 'false');
+    icon.textContent = '＋';
+    document.body.classList.remove('menu-open');
+  }
+  toggle.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    menu.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    icon.textContent = open ? '×' : '＋';
+    document.body.classList.toggle('menu-open', open);
+  });
+  menu.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  document.addEventListener('keydown', event => {
+    if(event.key === 'Escape') closeMenu();
+  });
+
+  // Aparición progresiva de bloques al entrar en el viewport.
+  const revealElements = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window && !reducedMotion){
+    const observer = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -40px 0px'});
+    revealElements.forEach(element => observer.observe(element));
+  }else{
+    revealElements.forEach(element => element.classList.add('is-visible'));
+  }
+
+  // Galería horizontal: 1 px de scroll vertical = 1 px de avance horizontal.
+  // El wrapper reserva el recorrido; la sección sticky permanece fija en pantalla.
+  const workSpacer = document.getElementById('workPinSpacer');
+  const workSection = document.querySelector('.work-section');
+  const workViewport = document.querySelector('.work-viewport');
+  const workTrack = document.getElementById('workTrack');
+  const workProgress = document.getElementById('workProgress');
+  const workCount = document.getElementById('workCount');
+  const workCards = workTrack ? [...workTrack.querySelectorAll('.work-card')] : [];
+  const mobileGallery = window.matchMedia('(max-width: 760px)');
+  let galleryDistance = 0;
+  let ticking = false;
+
+  function measureGallery(){
+    if(!workSpacer || !workSection || !workTrack || !workViewport) return;
+    if(mobileGallery.matches || reducedMotion){
+      workSpacer.style.height = 'auto';
+      workSection.style.position = 'relative';
+      workSection.style.height = 'auto';
+      workTrack.style.transform = 'translate3d(0,0,0)';
+      galleryDistance = 0;
+      return;
+    }
+    workSection.style.position = 'sticky';
+    workSection.style.top = '0px';
+    workSection.style.height = '100svh';
+    const viewportStyle = getComputedStyle(workViewport);
+    const padStart = parseFloat(viewportStyle.paddingLeft) || 0;
+    const padEnd = parseFloat(viewportStyle.paddingRight) || 0;
+    galleryDistance = Math.max(0, workTrack.scrollWidth + padStart + padEnd - workViewport.clientWidth);
+    // Altura del pin = alto de ventana + recorrido horizontal exacto.
+    workSpacer.style.height = `${window.innerHeight + galleryDistance}px`;
+  }
+
+  function updateGallery(){
+    if(!workSpacer || !workTrack) return;
+    const scrollY = window.scrollY;
+    header.classList.toggle('is-scrolled', scrollY > 35);
+
+    const glow = document.querySelector('.hero-glow');
+    if(glow && !reducedMotion && scrollY < window.innerHeight * 1.2){
+      glow.style.translate = `0 ${scrollY * .10}px`;
+    }
+
+    if(mobileGallery.matches || reducedMotion){
+      if(workProgress) workProgress.style.width = '0%';
+      if(workCount) workCount.textContent = `01 / 0${workCards.length}`;
+      return;
+    }
+
+    const wrapperTop = workSpacer.getBoundingClientRect().top;
+    const progress = Math.min(1, Math.max(0, -wrapperTop / Math.max(1, galleryDistance)));
+    const x = galleryDistance * progress;
+
+    // Importante: solo eje X. No se aplica translateY ni rotación.
+    workTrack.style.transform = `translate3d(${-x}px, 0px, 0px)`;
+    if(workProgress) workProgress.style.width = `${progress * 100}%`;
+
+    const firstCard = workCards[0];
+    const cardWidth = firstCard ? firstCard.getBoundingClientRect().width : 1;
+    const gap = parseFloat(getComputedStyle(workTrack).columnGap || getComputedStyle(workTrack).gap) || 0;
+    const active = Math.min(workCards.length, Math.max(1, Math.floor((x + cardWidth * .45) / (cardWidth + gap)) + 1));
+    if(workCount) workCount.textContent = `0${active} / 0${workCards.length}`;
+  }
+
+  function onScroll(){
+    if(ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      updateGallery();
+      ticking = false;
+    });
+  }
+
+  function refreshGallery(){
+    measureGallery();
+    updateGallery();
+  }
+
+  window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('resize', refreshGallery, {passive:true});
+  window.addEventListener('load', refreshGallery, {once:true});
+
+  if('ResizeObserver' in window && workTrack){
+    const galleryObserver = new ResizeObserver(refreshGallery);
+    galleryObserver.observe(workTrack);
+    galleryObserver.observe(workViewport);
+  }
+
+  // Navegación por tarjetas: mueve el scroll vertical hasta la posición X equivalente.
+  const workPrev = document.getElementById('workPrev');
+  const workNext = document.getElementById('workNext');
+
+  function moveGallery(direction){
+    if(mobileGallery.matches){
+      workViewport?.scrollBy({left:direction * (workCards[0]?.getBoundingClientRect().width || 300),behavior:reducedMotion?'auto':'smooth'});
+      return;
+    }
+    if(!workSpacer || !workViewport || !workTrack) return;
+    const rect = workSpacer.getBoundingClientRect();
+    const currentX = Math.min(galleryDistance, Math.max(0, -rect.top));
+    const cardWidth = workCards[0]?.getBoundingClientRect().width || workViewport.clientWidth;
+    const gap = parseFloat(getComputedStyle(workTrack).gap) || 0;
+    const targetX = Math.min(galleryDistance, Math.max(0, currentX + direction * (cardWidth + gap)));
+    const targetTop = window.scrollY + rect.top + targetX;
+    window.scrollTo({top:targetTop,behavior:reducedMotion?'auto':'smooth'});
+  }
+  workPrev?.addEventListener('click',()=>moveGallery(-1));
+  workNext?.addEventListener('click',()=>moveGallery(1));
+
+  // Drag horizontal: convierte el gesto en scroll vertical equivalente sin diagonalidad.
+  let pointerDown = false;
+  let pointerOriginX = 0;
+  let scrollOriginY = 0;
+  workViewport?.addEventListener('pointerdown',event=>{
+    if(mobileGallery.matches || event.pointerType!=='mouse' || event.button!==0) return;
+    pointerDown = true;
+    pointerOriginX = event.clientX;
+    scrollOriginY = window.scrollY;
+    workViewport.classList.add('is-dragging');
+    workViewport.setPointerCapture?.(event.pointerId);
+  });
+  workViewport?.addEventListener('pointermove',event=>{
+    if(!pointerDown) return;
+    const deltaX = pointerOriginX - event.clientX;
+    window.scrollTo({top:scrollOriginY + deltaX,behavior:'auto'});
+  });
+  ['pointerup','pointercancel','lostpointercapture'].forEach(type=>{
+    workViewport?.addEventListener(type,()=>{
+      pointerDown=false;
+      workViewport?.classList.remove('is-dragging');
+    });
+  });
+
+  refreshGallery();
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
